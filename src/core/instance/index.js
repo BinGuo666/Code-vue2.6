@@ -5,9 +5,9 @@ import { eventsMixin } from './events'
 import { lifecycleMixin } from './lifecycle'
 import { warn } from '../util/index'
 
-function Vue (options) {
-  if (process.env.NODE_ENV !== 'production' &&
-    !(this instanceof Vue)
+function Vue(options) {
+  if (process.env.NODE_ENV !== 'production' && // 是否是非生产环境
+    !(this instanceof Vue) // 判断是否是非new调用Vue
   ) {
     warn('Vue is a constructor and should be called with the `new` keyword')
   }
