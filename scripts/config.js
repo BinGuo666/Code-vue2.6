@@ -1,11 +1,11 @@
 const path = require('path')
-const buble = require('rollup-plugin-buble')
-const alias = require('rollup-plugin-alias')
-const cjs = require('rollup-plugin-commonjs')
+const buble = require('rollup-plugin-buble') // 转义es6
+const alias = require('rollup-plugin-alias') // 别名
+const cjs = require('rollup-plugin-commonjs') 
 const replace = require('rollup-plugin-replace')
 const node = require('rollup-plugin-node-resolve')
 const flow = require('rollup-plugin-flow-no-whitespace')
-const version = process.env.VERSION || require('../package.json').version
+const version = process.env.VERSION || require('../package.json').version // 获取当前的版本号
 const weexVersion = process.env.WEEX_VERSION || require('../packages/weex-vue-framework/package.json').version
 
 const banner =
@@ -25,12 +25,12 @@ const weexFactoryPlugin = {
 }
 
 const aliases = require('./alias')
-const resolve = p => {
+const resolve = p => {  // 封装了相应的路径解析
   const base = p.split('/')[0]
   if (aliases[base]) {
     return path.resolve(aliases[base], p.slice(base.length + 1))
   } else {
-    return path.resolve(__dirname, '../', p)
+    return path.resolve(__dirname, '../', p) // 如果alias.js文件没有该路径则返回当前的上层路径
   }
 }
 
